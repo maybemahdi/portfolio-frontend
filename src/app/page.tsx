@@ -1,8 +1,9 @@
+import Home from "@/components/modules/Home";
 
 const HomePage = () => {
   return (
     <div>
-      Hello
+      <Home />
     </div>
   );
 };

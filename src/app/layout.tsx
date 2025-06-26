@@ -1,10 +1,9 @@
-import { ThemeProvider } from "@/Providers/ThemeProvider";
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Urbanist } from "next/font/google";
-import { Navbar } from "@/components/shared/Navbar/Navbar";
 import Providers from "@/Providers/Providers";
+import { Urbanist } from "next/font/google";
+import SplashCursor from "@/components/ui/core/SplashCursor";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -24,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${urbanist.variable} antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          {/* <SplashCursor /> */}
+        </Providers>
       </body>
     </html>
   );

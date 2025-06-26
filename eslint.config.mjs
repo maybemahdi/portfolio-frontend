@@ -28,6 +28,7 @@ const eslintConfig = [
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
+      "@next/next/no-img-element": "off",
     }
   }
 ];

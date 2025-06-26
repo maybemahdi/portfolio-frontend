@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -45,53 +46,56 @@
 
 * {
   font-family: "Urbanist", sans-serif;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 :root {
   --radius: 0.65rem;
 
-  /* PRIMARY THEME COLORS (Updated) */
-  --primary: oklch(0.72 0.18 199); /* Cyan-teal */
-  --primary-foreground: oklch(0.1 0.01 199);
+  /* PRIMARY THEME COLORS (Based on #f43f5e) */
+  --primary: #f43f5e;
+  --primary-foreground: oklch(0.13 0.01 20); /* dark text for contrast */
 
-  --accent: oklch(0.85 0.1 195);
-  --accent-foreground: oklch(0.16 0.01 195);
+  --accent: oklch(0.92 0.12 20); /* lighter tint of primary */
+  --accent-foreground: oklch(0.18 0.01 20);
 
-  --foreground: oklch(0.14 0.005 285.823);
+  --foreground: oklch(0.16 0.005 20);
   --background: oklch(1 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
+  --card-foreground: oklch(0.16 0.005 20);
 
-  /* Keep others same or tweak subtly */
-  --secondary: oklch(0.96 0.01 260);
-  --secondary-foreground: oklch(0.2 0.01 260);
+  --secondary: oklch(0.96 0.01 20);
+  --secondary-foreground: oklch(0.22 0.01 20);
 
-  --muted: oklch(0.95 0.01 260);
-  --muted-foreground: oklch(0.55 0.01 260);
+  --muted: oklch(0.95 0.01 20);
+  --muted-foreground: oklch(0.55 0.01 20);
 
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
+  --border: oklch(0.92 0.004 20);
+  --input: oklch(0.92 0.004 20);
   --ring: var(--primary);
 }
 
 .dark {
-  --background: oklch(0.15 0.01 270);
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.16 0.01 20);
+  --foreground: oklch(0.98 0 0);
 
-  --primary: oklch(0.65 0.18 199);
-  --primary-foreground: oklch(0.1 0.01 199);
+  --primary: #f43f5e;
+  --primary-foreground: oklch(0.98 0 0);
 
-  --accent: oklch(0.75 0.1 195);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.65 0.12 20);
+  --accent-foreground: oklch(0.98 0 0);
 
-  --card: oklch(0.18 0.01 270);
-  --card-foreground: oklch(0.985 0 0);
+  --card: oklch(0.19 0.01 20);
+  --card-foreground: oklch(0.98 0 0);
 
-  --secondary: oklch(0.3 0.01 260);
-  --secondary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.32 0.01 20);
+  --secondary-foreground: oklch(0.98 0 0);
 
-  --muted: oklch(0.3 0.01 260);
-  --muted-foreground: oklch(0.7 0.01 260);
+  --muted: oklch(0.32 0.01 20);
+  --muted-foreground: oklch(0.7 0.01 20);
 
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
