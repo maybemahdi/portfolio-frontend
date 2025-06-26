@@ -18,7 +18,7 @@ import { usePathname } from "next/navigation";
 import { scrollToSection } from "@/utils/scrollToSectionById";
 
 const navigation = [
-  { name: "Home", href: "/" },
+  // { name: "Home", href: "/" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
