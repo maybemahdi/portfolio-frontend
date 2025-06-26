@@ -15,20 +15,22 @@ import {
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
+import { scrollToSection } from "@/utils/scrollToSectionById";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Skills", href: "/skills" },
-  { name: "Projects", href: "/projects" },
-  { name: "Experience", href: "/experience" },
-  { name: "Contact", href: "/contact" },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Experience", href: "#experience" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
+  const [activeSection, setActiveSection] = React.useState("home");
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -98,11 +100,16 @@ export function Navbar() {
               {navigation.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  onClick={() => {
+                    setActiveSection(item.name);
+                    scrollToSection(item.href);
+                  }}
+                  href={pathname === "/" && item.name === "Home"
+                    ? "#home" : item.href}
                   className={cn(
                     "text-foreground/80 hover:text-foreground px-3 py-2 text-base font-medium transition-colors duration-500 hover:bg-primary rounded-md",
                     {
-                      "bg-primary": pathname === item.href,
+                      "bg-primary": activeSection === item.name,
                     }
                   )}
                 >
@@ -148,7 +155,12 @@ export function Navbar() {
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="text-foreground hover:text-foreground/80 px-3 py-3 text-base font-medium transition-all duration-500 hover:bg-accent rounded-md border-l-2 border-transparent hover:border-primary"
+                        className={cn(
+                          "text-foreground/80 hover:text-foreground px-3 py-2 text-base font-medium transition-colors duration-500 hover:bg-primary rounded-md",
+                          {
+                            "bg-primary": pathname === item.href,
+                          }
+                        )}
                       >
                         {item.name}
                       </Link>

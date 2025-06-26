@@ -63,7 +63,7 @@
   --accent-foreground: oklch(0.18 0.01 20);
 
   --foreground: oklch(0.16 0.005 20);
-  --background: oklch(1 0 0);
+  --background: #F5F5F5;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.16 0.005 20);
 

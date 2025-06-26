@@ -20,6 +20,7 @@ const itemVariants = {
 const HeroSection = () => {
   return (
     <motion.div
+      id="home"
       style={{ height: "calc(100vh - 50px)" }}
       className="flex items-center justify-center gap-8 my-10 -mt-20 px-0 md:px-0"
       variants={containerVariants}
@@ -44,7 +45,7 @@ const HeroSection = () => {
         </motion.h2>
         <motion.h3
           variants={itemVariants}
-          className="text-2xl md:text-3xl font-normal text-center tracking-[6px]"
+          className="text-xl sm:text-2xl md:text-3xl font-normal text-center tracking-[6px]"
         >
           <Typewriter
             cursor

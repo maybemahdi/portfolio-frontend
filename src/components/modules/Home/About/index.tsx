@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,8 +19,9 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default function About() {
+export const About = () => {
   const philosophy = [
     {
       icon: <Heart className="h-5 w-5" />,
@@ -83,7 +85,7 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="about" className="min-h-screen bg-background">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse" />
@@ -95,7 +97,12 @@ export default function About() {
           {/* Main About Section */}
           <div className="grid lg:grid-cols-3 gap-12 mb-16">
             {/* Profile Image & Quick Info */}
-            <div className="lg:col-span-1 space-y-6">
+            <motion.div
+              className="lg:col-span-1 space-y-6"
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity" />
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 via-accent/20 to-primary/5 p-1">
@@ -128,17 +135,22 @@ export default function About() {
                       Download Resume
                     </Button>
                     <Link href={`mailto:${email}`} target="_blank">
-                    <Button size="sm" variant="outline" className="group/btn">
-                      <Mail className="h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
-                    </Button>
+                      <Button size="sm" variant="outline" className="group/btn">
+                        <Mail className="h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
+                      </Button>
                     </Link>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
 
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <motion.div
+              className="lg:col-span-2 space-y-8"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            >
               <div className="space-y-6">
                 <Badge
                   variant="secondary"
@@ -154,8 +166,8 @@ export default function About() {
                     </span>
                   </h1>
                   <p className="text-xl text-muted-foreground leading-relaxed">
-                    A passionate full-stack software developer who loves turning complex
-                    problems into simple, beautiful solutions.
+                    A passionate full-stack software developer who loves turning
+                    complex problems into simple, beautiful solutions.
                   </p>
                 </div>
               </div>
@@ -178,7 +190,13 @@ export default function About() {
               </div>
 
               {/* Enhanced Quick Stats */}
-              <div className="grid grid-cols-3 gap-6 py-8">
+              <motion.div
+                className="grid grid-cols-3 gap-6 py-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
+              >
                 <div className="text-center group">
                   <div className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-110 transition-transform">
                     50+
@@ -203,108 +221,143 @@ export default function About() {
                     Tea Cups
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* Philosophy & Interests */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <motion.div
+            className="grid md:grid-cols-2 gap-8 mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          >
             {/* My Philosophy */}
-            <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                  <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                    <Sparkles className="h-4 w-4 text-white" />
-                  </div>
-                  My Philosophy
-                </h3>
-                <div className="space-y-4">
-                  {philosophy.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors group/item"
-                    >
-                      <div className="text-primary mt-0.5 group-hover/item:scale-110 transition-transform">
-                        {item.icon}
-                      </div>
-                      <div className="space-y-1">
-                        <div className="font-medium text-sm">{item.title}</div>
-                        <div className="text-xs text-muted-foreground leading-relaxed">
-                          {item.description}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                      <Sparkles className="h-4 w-4 text-white" />
+                    </div>
+                    My Philosophy
+                  </h3>
+                  <div className="space-y-4">
+                    {philosophy.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors group/item"
+                      >
+                        <div className="text-primary mt-0.5 group-hover/item:scale-110 transition-transform">
+                          {item.icon}
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-medium text-sm">
+                            {item.title}
+                          </div>
+                          <div className="text-xs text-muted-foreground leading-relaxed">
+                            {item.description}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Interests */}
-            <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6">
-                  When I&apos;m Not Coding
-                </h3>
-                <div className="space-y-4">
-                  {interests.map((interest, index) => (
-                    <div
-                      key={index}
-                      className={`relative overflow-hidden rounded-xl p-4 bg-gradient-to-r ${interest.color} border border-white/10 group/interest hover:scale-105 transition-all duration-300`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="text-primary group-hover/interest:rotate-12 transition-transform">
-                          {interest.icon}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-6">
+                    When I&apos;m Not Coding
+                  </h3>
+                  <div className="space-y-4">
+                    {interests.map((interest, index) => (
+                      <motion.div
+                        key={index}
+                        className={`relative overflow-hidden rounded-xl p-4 bg-gradient-to-r ${interest.color} border border-white/10 group/interest hover:scale-105 transition-all duration-300`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 * index }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="text-primary group-hover/interest:rotate-12 transition-transform">
+                            {interest.icon}
+                          </div>
+                          <span className="font-medium">{interest.label}</span>
                         </div>
-                        <span className="font-medium">{interest.label}</span>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/interest:translate-x-full transition-transform duration-1000" />
-                    </div>
-                  ))}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/interest:translate-x-full transition-transform duration-1000" />
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* Enhanced Current Focus */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+          >
+            <Card className="relative overflow-hidden bg-gradient-to-r from-primary/5 via-accent/10 to-primary/5 border-primary/20 hover:shadow-2xl transition-all duration-500 group">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <CardContent className="relative p-8 text-center space-y-6">
+                <div className="space-y-2">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/10 text-primary border-primary/20"
+                  >
+                    Currently Building
+                  </Badge>
+                  <h3 className="text-2xl font-semibold">Something Amazing</h3>
+                </div>
+                <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  Working on an AI-powered productivity app that helps
+                  developers manage their workflow more efficiently. Always
+                  excited to discuss new opportunities and interesting projects!
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 pt-4">
+                  <Button className="group/btn">
+                    Let&apos;s Chat
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                  <Link href={socialLinks.github} target="_blank">
+                    <Button variant="outline" className="group/btn">
+                      <Github className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                      GitHub
+                    </Button>
+                  </Link>
+                  <Link href={socialLinks.linkedin} target="_blank">
+                    <Button variant="outline" className="group/btn">
+                      <Linkedin className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform" />
+                      LinkedIn
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Enhanced Current Focus */}
-          <Card className="relative overflow-hidden bg-gradient-to-r from-primary/5 via-accent/10 to-primary/5 border-primary/20 hover:shadow-2xl transition-all duration-500 group">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <CardContent className="relative p-8 text-center space-y-6">
-              <div className="space-y-2">
-                <Badge
-                  variant="secondary"
-                  className="bg-primary/10 text-primary border-primary/20"
-                >
-                  Currently Building
-                </Badge>
-                <h3 className="text-2xl font-semibold">Something Amazing</h3>
-              </div>
-              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Working on an AI-powered productivity app that helps developers
-                manage their workflow more efficiently. Always excited to
-                discuss new opportunities and interesting projects!
-              </p>
-              <div className="flex justify-center gap-4 pt-4">
-                <Button className="group/btn">
-                  Let&apos;s Chat
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-                <Link href={socialLinks.github} target="_blank">
-                  <Button variant="outline" className="group/btn">
-                    <Github className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
-                    GitHub
-                  </Button>
-                </Link>
-                <Link href={socialLinks.linkedin} target="_blank">
-                  <Button variant="outline" className="group/btn">
-                    <Linkedin className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform" />
-                    LinkedIn
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+          </motion.div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default About;
