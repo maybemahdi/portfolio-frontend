@@ -177,7 +177,7 @@ export default function Projects() {
         animate="visible"
         variants={containerVariants}
       >
-        <div className="container mx-auto max-w-8xl">
+        <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <motion.div
             className="text-center space-y-6 mb-20"

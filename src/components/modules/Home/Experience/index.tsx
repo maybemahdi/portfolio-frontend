@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, Variants, easeInOut } from "framer-motion";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,8 @@ import {
   Globe,
   Heart,
 } from "lucide-react";
+import type { Variants } from "framer-motion";
+import { easeInOut } from "framer-motion";
 import Link from "next/link";
 
 export default function Experience() {
@@ -168,7 +170,7 @@ export default function Experience() {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
       },
     },
@@ -186,15 +188,15 @@ export default function Experience() {
   };
 
   return (
-    <div id="experience" className="min-h-screen bg-background">
+    <div id="experience" className="min-h-screen bg-background overflow-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+          className="absolute -top-40 -left-40 w-80 h-80 md:w-96 md:h-96 bg-primary/5 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
-            x: [0, 50, 0],
+            x: [0, 30, 0],
           }}
           transition={{
             duration: 8,
@@ -203,11 +205,11 @@ export default function Experience() {
           }}
         />
         <motion.div
-          className="absolute -bottom-40 -right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+          className="absolute -bottom-40 -right-40 w-80 h-80 md:w-96 md:h-96 bg-accent/10 rounded-full blur-3xl"
           animate={{
             scale: [1.3, 1, 1.3],
             opacity: [0.4, 0.7, 0.4],
-            y: [0, -30, 0],
+            y: [0, -20, 0],
           }}
           transition={{
             duration: 10,
@@ -216,24 +218,10 @@ export default function Experience() {
             delay: 2,
           }}
         />
-        <motion.div
-          className="absolute top-1/3 right-1/4 w-60 h-60 bg-primary/3 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.2, 0.5, 0.2],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 5,
-          }}
-        />
       </div>
 
       <motion.div
-        className="relative py-20 px-4"
+        className="relative py-12 md:py-20 px-4 md:px-0"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -241,7 +229,7 @@ export default function Experience() {
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <motion.div
-            className="text-center space-y-6 mb-20"
+            className="text-center space-y-6 mb-12 md:mb-20"
             variants={itemVariants}
           >
             <motion.div
@@ -258,7 +246,7 @@ export default function Experience() {
               </Badge>
             </motion.div>
             <motion.h1
-              className="text-4xl md:text-6xl font-bold"
+              className="text-3xl md:text-4xl lg:text-6xl font-bold"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ type: "spring", stiffness: 100, delay: 0.3 }}
@@ -269,7 +257,7 @@ export default function Experience() {
               </span>
             </motion.h1>
             <motion.p
-              className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
@@ -279,25 +267,23 @@ export default function Experience() {
             </motion.p>
           </motion.div>
 
-          {/* Experience Timeline */}
-          <div className="relative">
-            {/* Timeline Line */}
+          {/* Experience Timeline - Mobile First Approach */}
+          <div className="relative w-full mx-auto">
+            {/* Timeline Line - Responsive positioning */}
             <motion.div
-              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary transform md:-translate-x-1/2"
+              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary md:transform md:-translate-x-1/2"
               variants={timelineVariants}
               style={{ originY: 0 }}
             />
 
             {/* Experience Cards */}
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={exp.id}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } flex-col md:gap-8`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  className="relative"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{
                     type: "spring",
                     stiffness: 100,
@@ -307,7 +293,7 @@ export default function Experience() {
                 >
                   {/* Timeline Dot */}
                   <motion.div
-                    className="absolute left-8 md:left-1/2 w-4 h-4 bg-gradient-to-r from-primary to-accent rounded-full transform md:-translate-x-1/2 z-10 shadow-lg"
+                    className="absolute left-4 md:left-1/2 top-8 w-3 h-3 md:w-4 md:h-4 bg-gradient-to-r from-primary to-accent rounded-full md:transform md:-translate-x-1/2 z-10 shadow-lg"
                     whileHover={{ scale: 1.5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
@@ -325,10 +311,12 @@ export default function Experience() {
                     />
                   </motion.div>
 
-                  {/* Experience Card */}
+                  {/* Experience Card - Mobile first, then desktop alternating */}
                   <motion.div
-                    className={`w-full md:w-5/12 ml-16 md:ml-0 ${
-                      index % 2 === 0 ? "md:text-right" : "md:text-left"
+                    className={`ml-12 md:ml-0 md:w-5/12 ${
+                      index % 2 === 0
+                        ? "md:mr-auto md:pr-8"
+                        : "md:ml-auto md:pl-8"
                     }`}
                     whileHover={{
                       y: -10,
@@ -342,22 +330,16 @@ export default function Experience() {
                           : "from-muted/30 to-background"
                       } group`}
                     >
-                      <CardContent className="p-8 space-y-6">
+                      <CardContent className="p-6 md:p-8 space-y-4 md:space-y-6">
                         {/* Company Header */}
-                        <div
-                          className={`flex items-center gap-4 ${
-                            index % 2 === 0
-                              ? "md:flex-row-reverse md:text-right"
-                              : ""
-                          }`}
-                        >
+                        <div className="flex items-start gap-4">
                           <motion.div
-                            className="relative"
+                            className="relative flex-shrink-0"
                             whileHover={{ rotate: 360 }}
                             transition={{ duration: 0.8 }}
                           >
                             <div
-                              className={`w-16 h-16 rounded-xl bg-gradient-to-br ${exp.color} p-0.5`}
+                              className={`w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${exp.color} p-0.5`}
                             >
                               <img
                                 src={exp.logo || "/placeholder.svg"}
@@ -367,42 +349,45 @@ export default function Experience() {
                             </div>
                             {exp.current && (
                               <motion.div
-                                className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center"
+                                className="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 bg-green-500 rounded-full flex items-center justify-center"
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{
                                   duration: 2,
                                   repeat: Number.POSITIVE_INFINITY,
                                 }}
                               >
-                                <div className="w-2 h-2 bg-white rounded-full" />
+                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full" />
                               </motion.div>
                             )}
                           </motion.div>
-                          <div className="flex-1 space-y-1">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <h3 className="text-xl font-bold">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                              <h3 className="text-lg md:text-xl font-bold truncate">
                                 {exp.company}
                               </h3>
                               {exp.current && (
-                                <Badge className="bg-green-500 text-white text-xs">
+                                <Badge className="bg-green-500 text-white text-xs flex-shrink-0">
                                   <Zap className="h-3 w-3 mr-1" />
                                   Current
                                 </Badge>
                               )}
                             </div>
-                            <p className="text-primary font-semibold">
+                            <p className="text-primary font-semibold text-sm md:text-base mb-2">
                               {exp.position}
                             </p>
-                            <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs md:text-sm text-muted-foreground">
                               <div className="flex items-center gap-1">
-                                <Calendar className="h-4 w-4" />
+                                <Calendar className="h-3 w-3 md:h-4 md:w-4" />
                                 {exp.duration}
                               </div>
                               <div className="flex items-center gap-1">
-                                <MapPin className="h-4 w-4" />
+                                <MapPin className="h-3 w-3 md:h-4 md:w-4" />
                                 {exp.location}
                               </div>
-                              <Badge variant="outline" className="text-xs">
+                              <Badge
+                                variant="outline"
+                                className="text-xs w-fit"
+                              >
                                 {exp.type}
                               </Badge>
                             </div>
@@ -411,7 +396,7 @@ export default function Experience() {
 
                         {/* Description */}
                         <motion.p
-                          className="text-muted-foreground text-left leading-relaxed"
+                          className="text-muted-foreground leading-relaxed text-sm md:text-base"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.8 + index * 0.1 }}
@@ -426,7 +411,7 @@ export default function Experience() {
                           animate={{ y: 0, opacity: 1 }}
                           transition={{ delay: 0.9 + index * 0.1 }}
                         >
-                          <h4 className="font-semibold flex items-center gap-2">
+                          <h4 className="font-semibold flex items-center gap-2 text-sm md:text-base">
                             <Award className="h-4 w-4 text-primary" />
                             Key Achievements
                           </h4>
@@ -434,15 +419,17 @@ export default function Experience() {
                             {exp.achievements.map((achievement, achIndex) => (
                               <motion.li
                                 key={achIndex}
-                                className="flex items-start text-left gap-2 text-sm text-muted-foreground"
+                                className="flex items-start gap-2 text-xs md:text-sm text-muted-foreground"
                                 initial={{ x: -10, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{
                                   delay: 1 + index * 0.1 + achIndex * 0.05,
                                 }}
                               >
-                                <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                                {achievement}
+                                <ChevronRight className="h-3 w-3 md:h-4 md:w-4 text-primary mt-0.5 flex-shrink-0" />
+                                <span className="leading-relaxed">
+                                  {achievement}
+                                </span>
                               </motion.li>
                             ))}
                           </ul>
@@ -455,11 +442,11 @@ export default function Experience() {
                           animate={{ y: 0, opacity: 1 }}
                           transition={{ delay: 1.1 + index * 0.1 }}
                         >
-                          <h4 className="font-semibold flex items-center gap-2">
+                          <h4 className="font-semibold flex items-center gap-2 text-sm md:text-base">
                             <Code className="h-4 w-4 text-primary" />
                             Technologies Used
                           </h4>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1.5 md:gap-2">
                             {exp.technologies.map((tech, techIndex) => (
                               <motion.div
                                 key={tech}
@@ -485,7 +472,7 @@ export default function Experience() {
 
                         {/* Highlights */}
                         <motion.div
-                          className="grid grid-cols-3 gap-4 pt-4 border-t border-border/50"
+                          className="grid grid-cols-3 gap-2 md:gap-4 pt-4 border-t border-border/50"
                           initial={{ y: 20, opacity: 0 }}
                           animate={{ y: 0, opacity: 1 }}
                           transition={{ delay: 1.3 + index * 0.1 }}
@@ -496,8 +483,8 @@ export default function Experience() {
                             transition={{ type: "spring", stiffness: 300 }}
                           >
                             <div className="flex items-center justify-center gap-1 text-primary mb-1">
-                              <Rocket className="h-4 w-4 group-hover/highlight:scale-110 transition-transform" />
-                              <span className="font-bold">
+                              <Rocket className="h-3 w-3 md:h-4 md:w-4 group-hover/highlight:scale-110 transition-transform" />
+                              <span className="font-bold text-sm md:text-base">
                                 {exp.highlights.projects}
                               </span>
                             </div>
@@ -511,8 +498,8 @@ export default function Experience() {
                             transition={{ type: "spring", stiffness: 300 }}
                           >
                             <div className="flex items-center justify-center gap-1 text-primary mb-1">
-                              <Users className="h-4 w-4 group-hover/highlight:scale-110 transition-transform" />
-                              <span className="font-bold">
+                              <Users className="h-3 w-3 md:h-4 md:w-4 group-hover/highlight:scale-110 transition-transform" />
+                              <span className="font-bold text-sm md:text-base">
                                 {exp.highlights.teamSize}
                               </span>
                             </div>
@@ -526,8 +513,8 @@ export default function Experience() {
                             transition={{ type: "spring", stiffness: 300 }}
                           >
                             <div className="flex items-center justify-center gap-1 text-primary mb-1">
-                              <TrendingUp className="h-4 w-4 group-hover/highlight:scale-110 transition-transform" />
-                              <span className="font-bold">
+                              <TrendingUp className="h-3 w-3 md:h-4 md:w-4 group-hover/highlight:scale-110 transition-transform" />
+                              <span className="font-bold text-sm md:text-base">
                                 {exp.highlights.impact}
                               </span>
                             </div>
@@ -546,32 +533,32 @@ export default function Experience() {
 
           {/* Career Stats */}
           <motion.div
-            className="mt-20 grid md:grid-cols-4 gap-6"
+            className="mt-12 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.5 }}
           >
             {[
               {
-                icon: <Building2 className="h-6 w-6" />,
+                icon: <Building2 className="h-5 w-5 md:h-6 md:w-6" />,
                 number: "4+",
                 label: "Companies",
                 color: "from-blue-500 to-cyan-500",
               },
               {
-                icon: <Calendar className="h-6 w-6" />,
+                icon: <Calendar className="h-5 w-5 md:h-6 md:w-6" />,
                 number: "2+",
                 label: "Years",
                 color: "from-green-500 to-emerald-500",
               },
               {
-                icon: <Rocket className="h-6 w-6" />,
+                icon: <Rocket className="h-5 w-5 md:h-6 md:w-6" />,
                 number: "85+",
                 label: "Projects",
                 color: "from-purple-500 to-pink-500",
               },
               {
-                icon: <Star className="h-6 w-6" />,
+                icon: <Star className="h-5 w-5 md:h-6 md:w-6" />,
                 number: "50+",
                 label: "Happy Clients",
                 color: "from-orange-500 to-red-500",
@@ -588,19 +575,19 @@ export default function Experience() {
                 }}
                 whileHover={{ y: -5, scale: 1.05 }}
               >
-                <Card className="text-center p-6 hover:shadow-xl transition-all duration-300 group">
-                  <CardContent className="p-0 space-y-3">
+                <Card className="text-center p-4 md:p-6 hover:shadow-xl transition-all duration-300 group">
+                  <CardContent className="p-0 space-y-2 md:space-y-3">
                     <motion.div
-                      className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-lg flex items-center justify-center text-white mx-auto`}
+                      className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r ${stat.color} rounded-lg flex items-center justify-center text-white mx-auto`}
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.8 }}
                     >
                       {stat.icon}
                     </motion.div>
-                    <div className="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">
+                    <div className="text-2xl md:text-3xl font-bold text-primary group-hover:scale-110 transition-transform">
                       {stat.number}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-xs md:text-sm text-muted-foreground">
                       {stat.label}
                     </div>
                   </CardContent>
@@ -611,7 +598,7 @@ export default function Experience() {
 
           {/* Call to Action */}
           <motion.div
-            className="mt-20"
+            className="mt-12 md:mt-20"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2 }}
@@ -621,26 +608,25 @@ export default function Experience() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Card className="relative overflow-hidden bg-gradient-to-r from-primary/5 via-accent/10 to-primary/5 border-primary/20 hover:shadow-2xl transition-all duration-500 group">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 />
-                <CardContent className="relative p-12 text-center space-y-8">
+                <CardContent className="relative p-8 md:p-12 text-center space-y-6 md:space-y-8">
                   <motion.div
-                    className="w-20 h-20 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto"
+                    className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto"
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.8 }}
                   >
-                    <Heart className="h-10 w-10 text-white" />
+                    <Heart className="h-8 w-8 md:h-10 md:w-10 text-white" />
                   </motion.div>
-                  <div className="space-y-4">
-                    <h3 className="text-3xl font-bold">
+                  <div className="space-y-3 md:space-y-4">
+                    <h3 className="text-2xl md:text-3xl font-bold">
                       Let&apos;s Work Together
                     </h3>
-                    <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+                    <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
                       I&apos;m always open to discussing new opportunities,
                       interesting projects, or just having a chat about
                       technology and development.
@@ -656,14 +642,17 @@ export default function Experience() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <Link href={"#contact"}>
-                        <Button size="lg" className="group text-lg px-8 py-6">
+                        <Button
+                          size="lg"
+                          className="group text-base md:text-lg px-6 md:px-8 py-4 md:py-6 w-full sm:w-auto"
+                        >
                           Get In Touch
                           <motion.div
                             className="ml-2"
                             whileHover={{ x: 5 }}
                             transition={{ type: "spring", stiffness: 300 }}
                           >
-                            <ExternalLink className="h-5 w-5" />
+                            <ExternalLink className="h-4 w-4 md:h-5 md:w-5" />
                           </motion.div>
                         </Button>
                       </Link>
@@ -676,9 +665,9 @@ export default function Experience() {
                         <Button
                           variant="outline"
                           size="lg"
-                          className="text-lg px-8 py-6"
+                          className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 w-full sm:w-auto bg-transparent"
                         >
-                          <Globe className="h-5 w-5 mr-2" />
+                          <Globe className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                           View Resume
                         </Button>
                       </Link>

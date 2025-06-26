@@ -5,4 +5,5 @@ export const socialLinks = {
   github: "https://github.com/maybemahdi",
 };
 
-export const email = "chat.mahdihasan@gmail.com"
+export const email = "chat.mahdihasan@gmail.com";
+export const phone = "+880-1875-661523";
