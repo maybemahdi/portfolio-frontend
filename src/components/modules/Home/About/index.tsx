@@ -107,7 +107,7 @@ export const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity" />
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 via-accent/20 to-primary/5 p-1">
                   <img
-                    src="https://res.cloudinary.com/du68mtlti/image/upload/v1750956985/%EF%B8%8F_vqhlcv.jpg"
+                    src="https://res.cloudinary.com/du68mtlti/image/upload/v1759511752/WhatsApp_Image_2025-10-03_at_8.23.13_PM_b1tat3.jpg"
                     alt="Mahdi Hasan Mahi"
                     className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                   />

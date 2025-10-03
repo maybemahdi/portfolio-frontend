@@ -28,7 +28,7 @@ export default function Projects() {
       description:
         "A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.",
       image:
-        "https://res.cloudinary.com/du68mtlti/image/upload/v1750956985/%EF%B8%8F_vqhlcv.jpg",
+        "https://res.cloudinary.com/du68mtlti/image/upload/v1759511752/WhatsApp_Image_2025-10-03_at_8.23.13_PM_b1tat3.jpg",
       featured: true,
       tech: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
       liveUrl: "https://example.com",
@@ -44,7 +44,7 @@ export default function Projects() {
       description:
         "Collaborative project management tool with real-time updates, team chat, and advanced analytics.",
       image:
-        "https://res.cloudinary.com/du68mtlti/image/upload/v1750956985/%EF%B8%8F_vqhlcv.jpg",
+        "https://res.cloudinary.com/du68mtlti/image/upload/v1759511752/WhatsApp_Image_2025-10-03_at_8.23.13_PM_b1tat3.jpg",
       featured: false,
       tech: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
       liveUrl: "https://example.com",
@@ -60,7 +60,7 @@ export default function Projects() {
       description:
         "Intelligent chatbot with natural language processing, context awareness, and multi-language support.",
       image:
-        "https://res.cloudinary.com/du68mtlti/image/upload/v1750956985/%EF%B8%8F_vqhlcv.jpg",
+        "https://res.cloudinary.com/du68mtlti/image/upload/v1759511752/WhatsApp_Image_2025-10-03_at_8.23.13_PM_b1tat3.jpg",
       featured: true,
       tech: ["Python", "OpenAI", "FastAPI", "React", "WebSocket"],
       liveUrl: "https://example.com",
@@ -76,7 +76,7 @@ export default function Projects() {
       description:
         "Real-time analytics platform with interactive charts, data visualization, and automated reporting features.",
       image:
-        "https://res.cloudinary.com/du68mtlti/image/upload/v1750956985/%EF%B8%8F_vqhlcv.jpg",
+        "https://res.cloudinary.com/du68mtlti/image/upload/v1759511752/WhatsApp_Image_2025-10-03_at_8.23.13_PM_b1tat3.jpg",
       featured: false,
       tech: ["React", "D3.js", "Node.js", "MongoDB", "Chart.js"],
       liveUrl: "https://example.com",

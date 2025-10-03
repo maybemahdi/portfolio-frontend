@@ -3,7 +3,6 @@ import "./globals.css";
 
 import Providers from "@/Providers/Providers";
 import { Urbanist } from "next/font/google";
-import SplashCursor from "@/components/ui/core/SplashCursor";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
